@@ -59,41 +59,41 @@ SELECT DISTINCT CITY FROM STATION WHERE LEFT(CITY,1) NOT IN ('A','E','I','O','U'
 
 SELECT DISTINCT CITY FROM STATION WHERE RIGHT(CITY,1) NOT IN ('a','e','i','o','u') ;
 
-Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
+--Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
 
 SELECT DISTINCT CITY FROM STATION WHERE LEFT(CITY,1) NOT IN ('A','E','I','O','U') OR RIGHT(CITY,1) NOT IN ('a','e','i','o','u');
 
-Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates
+--Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates
 
 SELECT DISTINCT CITY FROM STATION WHERE LEFT(CITY,1) NOT IN ('A','E','I','O','U') AND RIGHT(CITY,1) NOT IN ('a','e','i','o','u');
 
-Query the Name of any student in STUDENTS who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
+--Query the Name of any student in STUDENTS who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
 
 SELECT Name FROM STUDENTS WHERE Marks > 75 ORDER BY RIGHT(Name,3), ID ASC;
 
-Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+--Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
 
 SELECT name FROM Employee ORDER BY 1 ASC;
 
-Write a query that prints a list of employee names (i.e.: the name attribute) for employees in Employee having a salary greater than $2000 per month who have been employees for less than 10 months. Sort your result by ascending employee_id.
+--Write a query that prints a list of employee names (i.e.: the name attribute) for employees in Employee having a salary greater than $2000 per month who have been employees for less than 10 months. Sort your result by ascending employee_id.
 
 SELECT name from Employee WHERE salary>2000 AND months<10 ORDER BY employee_id ASC;
 
-Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
+--Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
 
-Equilateral: It's a triangle with  sides of equal length.
-Isosceles: It's a triangle with  sides of equal length.
-Scalene: It's a triangle with  sides of differing lengths.
-Not A Triangle: The given values of A, B, and C don't form a triangle.
+--Equilateral: It's a triangle with  sides of equal length.
+--Isosceles: It's a triangle with  sides of equal length.
+--Scalene: It's a triangle with  sides of differing lengths.
+--Not A Triangle: The given values of A, B, and C don't form a triangle.
 
 SELECT CASE WHEN (A + B <= C) OR (B + C <= A) OR (C + A <= B) THEN 'Not A Triangle' WHEN A = B and B = C THEN 'Equilateral' WHEN (A = B) OR (B = C) OR (A = C) THEN 'Isosceles' ELSE 'Scalene' END FROM TRIANGLES;
 
-Generate the following two result sets:
+--Generate the following two result sets:
 
-Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical (i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
-Query the number of ocurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format:
+--Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical (i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
+--Query the number of ocurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format:
 
-There are a total of [occupation_count] [occupation]s.
+--There are a total of [occupation_count] [occupation]s.
 
 SELECT CONCAT(Name,'(',LEFT(Occupation,1),')') FROM OCCUPATIONS ORDER BY Name;
 SELECT CONCAT('There are a total of ',COUNT(Occupation),' ',LOWER(Occupation),'s.') FROM OCCUPATIONS GROUP BY Occupation ORDER BY COUNT(Occupation) ASC, Occupation ASC;
